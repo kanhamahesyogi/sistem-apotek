@@ -1,0 +1,167 @@
+hasilidtransaksi
+     <form action="" method="post">
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <br>
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">Kategori Pelanggan :</label>
+                            <select name="kategoripelanggan" class="form-select" id="exampleFormControlInput1">
+                                <option disabled="disabled" selected="selected">Choose option</option>
+                                <option value="langganan">langganan</option>
+                                <option value="umum">Umum</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-floating col-1">
+                        <div class="button">
+                            <button class="btn btn-outline-success">Insert</button>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                if (@$_post['kategoripelanggan'] == 'langganan') {
+                ?>
+            </form>
+            <form action="" method="POST">
+                        <div class="row justify-content-center">
+                            <div class="form-floating col-4">
+                                <br>
+                                <div class="coba">
+                                    <label for="exampleFormControlInput1" class="form-label">Kategori Pelanggan :</label>
+                                    <input list="list_pelanggan" name="namalengkap" class="form-control">
+                                    <datalist id="list_pelanggan">
+                                        <?php
+                                        include('../koneksi.php');
+                                        $query = "SELECT namalengkap FROM tb_pelanggan";
+                                        $hasil = mysqli_query($koneksi, $query);
+                                        while ($row = mysqli_fetch_assoc($hasil)) {
+                                        ?>
+                                            <option value="<?php echo $row['namalengkap']; ?>"></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    //
+                    
+
+
+            <form action="../prosesinsert/proses_insert_transaksi.php" method="post">
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <br>
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">ID Pelanggan :</label>
+                            <select name="idpelanggan" class="form-select" id="exampleFormControlInput1">
+                                <option disabled="disabled" selected="selected">Choose option</option>
+                                <?php
+                                include('../koneksi.php');
+                                $query = "SELECT idpelanggan, namalengkap FROM tb_pelanggan";
+                                $hasil = mysqli_query($koneksi, $query);
+
+                                while ($row = mysqli_fetch_assoc($hasil)) {
+                                ?>
+                                    <option value="<?php echo $row['idpelanggan']; ?>"><?php echo $row['idpelanggan']; ?> | <?php echo $row['namalengkap']; ?></option>
+
+                                <?php
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+               
+                    <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">ID Transaksi :</label>
+                            <input type="text" class="form-control" cols="2" id="exampleFormControlInput1" placeholder="10001.." name="idtransaksi">
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">ID Karyawan
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <select name="idkaryawan" class="form-select" id="exampleFormControlInput1">
+                            <option disabled="disabled" selected="selected">Choose option</option>
+                            <?php
+                            include('../koneksi.php');
+                            $query = "SELECT idkaryawan, namakaryawan FROM tb_karyawan";
+                            $hasil = mysqli_query($koneksi, $query);
+
+                            while ($row = mysqli_fetch_assoc($hasil)) {
+                            ?>
+                                <option value="<?php echo $row['idkaryawan']; ?>"><?php echo $row['idkaryawan']; ?> | <?php echo $row['namakaryawan']; ?></option>
+
+                            <?php
+                            }
+                            ?>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">Tanggal Transaksi:</label>
+                            <input type="date" class="form-control" cols="2" id="exampleFormControlInput1" placeholder="" name="tgltransaksi">
+                        </div>
+                        <div class="form-floating col-10">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">Total Bayar:</label>
+                            <input type="text" class="form-control" cols="2" id="exampleFormControlInput1" placeholder="Total Harga Keseluruhan.." name="totalbayar">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">Bayar :</label>
+                            <input type="text" class="form-control" cols="2" id="exampleFormControlInput1" placeholder="" name="bayar">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-floating col-4">
+                        <div class="coba">
+                            <label for="exampleFormControlInput1" class="form-label">Kembalian :</label>
+                            <input type="text" class="form-control" cols="2" id="exampleFormControlInput1" placeholder="" name="kembali">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-center">
+                    <div class="form-floating col-1">
+                        <div class="button">
+                            <button class="btn btn-outline-success">Insert</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </table>
+//
